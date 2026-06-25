@@ -70,6 +70,24 @@ CLI entry point:
 fetch-folder-art "M:\Music" --dry-run
 ```
 
+## Standalone Windows Executable
+
+Users who do not want to install Python can download the standalone Windows
+build from the GitHub Releases page:
+
+[FetchFolderArt Releases](https://github.com/phazecrypto/FetchFolderArt/releases)
+
+Download `FetchFolderArt-Windows-x64.zip`, extract it, and run
+`FetchFolderArt.exe`.
+
+Maintainers can build the executable locally:
+
+```powershell
+scripts\build_windows_exe.ps1
+```
+
+The ZIP is written to `dist\FetchFolderArt-Windows-x64.zip`.
+
 ## Discogs Token
 
 Discogs is optional and is only used as the final fallback source.

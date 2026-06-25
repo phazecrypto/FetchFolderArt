@@ -27,7 +27,9 @@ from typing import Iterable, Optional
 SCRIPT_VERSION = "1.0"
 PACKAGE_DIR = Path(__file__).resolve().parent
 SOURCE_ROOT = PACKAGE_DIR.parent.parent
-APP_DIR = SOURCE_ROOT if PACKAGE_DIR.parent.name == "src" else PACKAGE_DIR
+APP_DIR = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else (
+    SOURCE_ROOT if PACKAGE_DIR.parent.name == "src" else PACKAGE_DIR
+)
 DATA_DIR = APP_DIR / "data"
 MUSICBRAINZ_RELEASE_SEARCH_URL = "https://musicbrainz.org/ws/2/release/"
 COVER_ART_FRONT_URL = "https://coverartarchive.org/release/{mbid}/front"

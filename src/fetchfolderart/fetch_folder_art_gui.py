@@ -35,7 +35,9 @@ APP_VERSION = "1.0"
 CACHE_VERSION = 1
 PACKAGE_DIR = Path(__file__).resolve().parent
 SOURCE_ROOT = PACKAGE_DIR.parent.parent
-APP_DIR = SOURCE_ROOT if PACKAGE_DIR.parent.name == "src" else PACKAGE_DIR
+APP_DIR = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else (
+    SOURCE_ROOT if PACKAGE_DIR.parent.name == "src" else PACKAGE_DIR
+)
 DATA_DIR = APP_DIR / "data"
 CACHE_DIR = DATA_DIR / "cache"
 CACHE_MANIFEST = CACHE_DIR / "manifest.json"

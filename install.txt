@@ -93,15 +93,30 @@ Or Run the Compiled Standalone Executable
 If you downloaded a compiled standalone release, Python does not need to be
 installed.
 
-1. Download the release ZIP or executable from the GitHub Releases page.
+1. Download FetchFolderArt-Windows-x64.zip from the GitHub Releases page:
+   https://github.com/phazecrypto/FetchFolderArt/releases
 2. Extract the ZIP if needed.
-3. Run the FetchFolderArt executable.
+3. Run FetchFolderArt.exe.
 4. Choose your music folder in the app.
 5. Review Matched Results.
 6. Commit the changes when ready, or enable Automatic Commits.
 
 The standalone executable should still create only folder.jpg files. It should
 not rename, move, retag, embed artwork into, or otherwise modify audio files.
+
+
+Build the Standalone Executable
+-------------------------------
+
+Maintainers can build the executable from the project folder:
+
+   scripts\build_windows_exe.ps1
+
+The build output is:
+
+   dist\FetchFolderArt-Windows-x64.zip
+
+The ZIP contains FetchFolderArt.exe, README.md, install.txt, and LICENSE.
 
 
 Safety Notes
