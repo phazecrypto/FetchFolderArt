@@ -13,6 +13,7 @@ import tempfile
 import threading
 import tkinter as tk
 import sys
+import webbrowser
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -34,7 +35,10 @@ DEFAULT_TIMEOUT = 10.0
 DEFAULT_RETRIES = 1
 DEFAULT_CANDIDATES = 5
 DEFAULT_MIN_SCORE = 70
-APP_VERSION = "1.0"
+APP_VERSION = "1.0.2"
+APP_RELEASE_DATE = "06/25/2026"
+GITHUB_REPO_URL = "https://github.com/phazecrypto/FetchFolderArt"
+CONTACT_EMAIL = "phazecrypto@gmx.com"
 CACHE_VERSION = 1
 PACKAGE_DIR = Path(__file__).resolve().parent
 SOURCE_ROOT = PACKAGE_DIR.parent.parent
@@ -884,10 +888,45 @@ class FolderArtGui(tk.Tk):
         return "\n\n".join(f"{heading}\n{body}" for heading, body in self._help_sections())
 
     def _show_about(self) -> None:
-        messagebox.showinfo(
-            "About FetchFolderArt",
-            "FetchFolderArt by devphaZe foundry.\n\nVersion 1.0, 2026.",
+        about = tk.Toplevel(self)
+        about.title("About FetchFolderArt")
+        about.geometry("460x260")
+        about.minsize(420, 240)
+        about.transient(self)
+        about.grab_set()
+        about.columnconfigure(0, weight=1)
+
+        frame = ttk.Frame(about, padding=18)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+
+        ttk.Label(
+            frame,
+            text="FetchFolderArt by devphaZe foundry",
+            font=("Segoe UI", 12, "bold"),
+        ).grid(row=0, column=0, sticky="w")
+        ttk.Label(
+            frame,
+            text=f"Version {APP_VERSION}, {APP_RELEASE_DATE}",
+        ).grid(row=1, column=0, sticky="w", pady=(10, 0))
+
+        ttk.Label(frame, text="GitHub repository:").grid(row=2, column=0, sticky="w", pady=(16, 0))
+        link = tk.Label(
+            frame,
+            text=GITHUB_REPO_URL,
+            fg="#0a64ad",
+            cursor="hand2",
+            font=("Segoe UI", 9, "underline"),
         )
+        link.grid(row=3, column=0, sticky="w")
+        link.bind("<Button-1>", lambda _event: webbrowser.open(GITHUB_REPO_URL))
+
+        ttk.Label(
+            frame,
+            text=f"Contact information/bug report: {CONTACT_EMAIL}",
+        ).grid(row=4, column=0, sticky="w", pady=(16, 0))
+
+        ttk.Button(frame, text="Close", command=about.destroy).grid(row=5, column=0, sticky="e", pady=(22, 0))
 
     def _parse_limit(self) -> int | None:
         text = self.limit.get().strip()

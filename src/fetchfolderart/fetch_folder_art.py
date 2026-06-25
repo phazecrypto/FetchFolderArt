@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 
-SCRIPT_VERSION = "1.0"
+SCRIPT_VERSION = "1.0.2"
 PACKAGE_DIR = Path(__file__).resolve().parent
 SOURCE_ROOT = PACKAGE_DIR.parent.parent
 APP_DIR = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else (
