@@ -1,0 +1,113 @@
+FetchFolderArt Installation and Run Instructions
+================================================
+
+FetchFolderArt is a Windows Python utility that scans local, mapped, or NAS
+music folders for missing album artwork and writes folder.jpg files after
+review or automatic commit.
+
+
+Requirements
+------------
+
+1. Windows 10 or newer.
+
+2. Python 3.10 or newer.
+   Download Python from:
+   https://www.python.org/downloads/windows/
+
+   During installation, check:
+   Add python.exe to PATH
+
+3. Internet access for artwork searches.
+
+4. A local music folder, mapped drive, or NAS/UNC path, for example:
+   M:\Music
+   M:\Rap Albums
+   \\NAS\Music
+
+
+Install Dependencies
+--------------------
+
+Open PowerShell and go to the project folder:
+
+   cd D:\Projects\FetchFolderArt
+
+Install the required Python packages:
+
+   python -m pip install -r requirements.txt
+
+
+Run the Windows GUI
+-------------------
+
+From the project folder, run:
+
+   scripts\fetch_folder_art_gui.bat
+
+Or run the GUI directly with Python:
+
+   $env:PYTHONPATH = "$PWD\src"
+   python -m fetchfolderart
+
+
+Run the Command-Line Script
+---------------------------
+
+From the project folder:
+
+   $env:PYTHONPATH = "$PWD\src"
+   python -m fetchfolderart.fetch_folder_art "M:\Music" --dry-run
+
+The --dry-run option shows what would be matched without writing folder.jpg.
+
+To write folder.jpg files from the command line:
+
+   $env:PYTHONPATH = "$PWD\src"
+   python -m fetchfolderart.fetch_folder_art "M:\Music"
+
+Optional command-line examples:
+
+   python -m fetchfolderart.fetch_folder_art "M:\Music" --limit 25 --dry-run
+   python -m fetchfolderart.fetch_folder_art "M:\Music" --force
+   python -m fetchfolderart.fetch_folder_art "\\NAS\Music" --log "data\art_fetch_log.csv"
+
+
+Discogs Token
+-------------
+
+Discogs is optional. The app works without it, but Discogs can be used as a
+final fallback artwork source.
+
+In the GUI, open:
+
+   Options > Discogs Token...
+
+Enter your personal Discogs token and save it. The token is stored in your
+Windows user environment as DISCOGS_TOKEN. It is not saved inside the app code.
+
+
+Or Run the Compiled Standalone Executable
+----------------------------------------
+
+If you downloaded a compiled standalone release, Python does not need to be
+installed.
+
+1. Download the release ZIP or executable from the GitHub Releases page.
+2. Extract the ZIP if needed.
+3. Run the FetchFolderArt executable.
+4. Choose your music folder in the app.
+5. Review Matched Results.
+6. Commit the changes when ready, or enable Automatic Commits.
+
+The standalone executable should still create only folder.jpg files. It should
+not rename, move, retag, embed artwork into, or otherwise modify audio files.
+
+
+Safety Notes
+------------
+
+- Start with a small test folder first.
+- Use Matched Results to preview artwork before committing.
+- Keep personal Discogs tokens private.
+- Runtime logs and cache files are stored in the data folder and ignored by Git.
