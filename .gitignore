@@ -13,7 +13,7 @@ dist/
 
 # Runtime data
 data/*
-!data/.gitkeep
+!data/.gitignore
 !data/README.md
 *.log
 art_fetch_log.csv
