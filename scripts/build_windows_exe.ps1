@@ -30,6 +30,7 @@ python -m PyInstaller `
     --specpath $buildRoot `
     --workpath $buildRoot `
     --distpath $distRoot `
+    --hidden-import fetchfolderart.fetch_folder_art `
     --collect-submodules mutagen `
     --collect-submodules PIL `
     $entryPoint

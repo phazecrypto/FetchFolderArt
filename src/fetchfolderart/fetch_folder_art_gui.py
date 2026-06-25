@@ -23,7 +23,10 @@ sys.dont_write_bytecode = True
 try:
     from . import fetch_folder_art as core
 except ImportError:
-    import fetch_folder_art as core
+    try:
+        from fetchfolderart import fetch_folder_art as core
+    except ImportError:
+        import fetch_folder_art as core
 from PIL import Image, ImageTk
 
 
