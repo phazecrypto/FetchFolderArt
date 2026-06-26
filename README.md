@@ -1,6 +1,6 @@
 # FetchFolderArt
 
-FetchFolderArt by devphaZe foundry is a Windows Python utility for scanning local or mapped NAS music folders and adding missing `folder.jpg` album artwork.
+FetchFolderArt by devphaZe foundry is a Windows Python utility for scanning local or mapped NAS music folders and adding missing `folder.jpg` album artwork. While there are other programs and web scrapers that will do the same, I wanted a solution that was local & private. FetchFolderArt will check 4 different sources for album art.
 
 The app recursively scans selected music folders, reads album tags with Mutagen, searches artwork sources, previews matched covers, and writes `folder.jpg` only after confirmation or when Automatic Commits is enabled.
 
